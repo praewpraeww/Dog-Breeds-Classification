@@ -43,17 +43,29 @@ cd dog-breeds-classification
 7. (Optional) **If you are running the project in Jupyter Lab on your local machine**. 
 
 	- Install Conda
-		* >> (Base) conda install -c conda-forge jupyterlab
+		* 
+		```
+		(Base) conda install -c conda-forge jupyterlab
+		```
 		* Jupyter Lab/Notebook must be install at the global environment
 		* Jupyter Lab/Notebook will not be able to swap kernel if the Jupyter Lab/Notebook is running within its own environment
 	- Install Conda extensions
-		* >> (Base) conda install ipykernel nb_conda_kernels
+		* 
+		```
+		(Base) conda install ipykernel nb_conda_kernels
+		```
 		* Use “ipykernel” to manage multiple kernels (aka. Conda environment)
 		* Use “nb_conda_kernels” to find all Conda environments 
 	- Create Conda environment and update ipykernel
-		* >> conda create -n `dog-breeds-classification` ipykernel
+		* 
+		```
+		conda create -n `dog-breeds-classification` ipykernel
+		```
 	- Generate Jupyter Lab/Notebook configurations
 		* 
+		```
+		jupyterlab --generate-config
+		```
 	- Add Password authentication to your Jupyter Lab
 		- Find following lines
 		```
@@ -73,8 +85,15 @@ cd dog-breeds-classification
 		c.ServerApp.password = password
 		```
 	- Start Jupyter Lab
-		* >> jupyter lab --config /opt/.jupyter/jupyter_lab_config.py --port=8888
-	- Browser Jupyter Lab at `http://127.0.0.1:8888`
+		* 
+		```
+		jupyter lab --config /opt/.jupyter/jupyter_lab_config.py --port=8888
+		```
+	- Browser Jupyter Lab at 
+		*
+		```
+		http://127.0.0.1:8888
+		```
 		* Use your password define in previous step
 		
 ## Evaluation
