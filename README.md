@@ -27,81 +27,56 @@ cd dog-breeds-classification
 
 3. Download the [human dataset](https://gitlab.com/atlonxp/siit-deep-learning/-/raw/main/lfw.zip).  Unzip the folder and place it in the repo, at location `path/to/dog-breeds-classification/lfw`.  If you are using a Windows machine, you are encouraged to use [7zip](http://www.7-zip.org/) to extract the folder. 
 
-4. Download the [VGG-16 bottleneck features](https://gitlab.com/atlonxp/siit-deep-learning/-/raw/main/DogVGG16Data.npz) for the dog dataset.  Place it in the repo, at location `path/to/dog-breeds-classification/bottleneck_features`.
+4. Download the [VGG-16 bottleneck features](https://gitlab.com/atlonxp/siit-deep-learning/-/raw/main/DogVGG16Data.npz) for the dog dataset. Place it in the repo, at location `path/to/dog-breeds-classification/bottleneck_features`.
 
-5. (Optional) __If you plan to install TensorFlow with GPU support on your local machine__, follow [the guide](https://www.tensorflow.org/install/) to install the necessary NVIDIA software on your system.  If you are using an EC2 GPU instance, you can skip this step.
+5. (Optional) __If you plan to install TensorFlow your local machine__, follow [the guide](https://www.tensorflow.org/install/) to install the necessary NVIDIA software on your system.  If you are using an EC2 GPU instance, you can skip this step.
 
-6. (Optional) **If you are running the project on your local machine (and not using AWS)**, create (and activate) a new environment.
+6. (Optional) **If you are running the project on your local machine**.
 
-	- __Linux__ (to install with __GPU support__, change `requirements/dog-linux.yml` to `requirements/dog-linux-gpu.yml`): 
-	```
-	conda env create -f requirements/dog-linux.yml
-	source activate dog-breeds-classification
-	```  
-	- __Mac__ (to install with __GPU support__, change `requirements/dog-mac.yml` to `requirements/dog-mac-gpu.yml`): 
-	```
-	conda env create -f requirements/dog-mac.yml
-	source activate dog-breeds-classification
-	```  
-	**NOTE:** Some Mac users may need to install a different version of OpenCV
-	```
-	conda install --channel https://conda.anaconda.org/menpo opencv3
-	```
-	- __Windows__ (to install with __GPU support__, change `requirements/dog-windows.yml` to `requirements/dog-windows-gpu.yml`):  
-	```
-	conda env create -f requirements/dog-windows.yml
-	activate dog-breeds-classification
-	```
-
-7. (Optional) **If you are running the project on your local machine (and not using AWS)** and Step 6 throws errors, try this __alternative__ step to create your environment.
-
-	- __Linux__ or __Mac__ (to install with __GPU support__, change `requirements/requirements.txt` to `requirements/requirements-gpu.txt`): 
+	- __Linux__ / __Mac__ / __Windows__: 
 	```
 	conda create --name dog-breeds-classification python=3.10
 	source activate dog-breeds-classification
 	pip install -r requirements/requirements.txt
 	```
-	**NOTE:** Some Mac users may need to install a different version of OpenCV
-	```
-	conda install --channel https://conda.anaconda.org/menpo opencv3
-	```
-	- __Windows__ (to install with __GPU support__, change `requirements/requirements.txt` to `requirements/requirements-gpu.txt`):  
-	```
-	conda create --name dog-breeds-classification python=3.10
-	activate dog-breeds-classification
-	pip install -r requirements/requirements.txt
-	```
 	
-8. (Optional) **If you are using AWS**, install Tensorflow.
-```
-sudo python3 -m pip install -r requirements/requirements-gpu.txt
-```
-	
-9. Switch [Keras backend](https://keras.io/backend/) to TensorFlow.
-	- __Linux__ or __Mac__: 
+7. (Optional) **If you are running the project in Jupyter Lab on your local machine**. 
+
+	- Install Conda
+		* >> (Base) conda install -c conda-forge jupyterlab
+		* Jupyter Lab/Notebook must be install at the global environment
+		* Jupyter Lab/Notebook will not be able to swap kernel if the Jupyter Lab/Notebook is running within its own environment
+	- Install Conda extensions
+		* >> (Base) conda install ipykernel nb_conda_kernels
+		* Use “ipykernel” to manage multiple kernels (aka. Conda environment)
+		* Use “nb_conda_kernels” to find all Conda environments 
+	- Create Conda environment and update ipykernel
+		* >> conda create -n `dog-breeds-classification` ipykernel
+	- Generate Jupyter Lab/Notebook configurations
+		* 
+	- Add Password authentication to your Jupyter Lab
+		- Find following lines
 		```
-		KERAS_BACKEND=tensorflow python -c "from tensorflow.keras import backend"
+		## Hashed password to use for web authentication.
+		#  
+		#  To generate, type in a python/IPython shell:
+		#  
+		#    from jupyter_server.auth import passwd; passwd()
+		#  
+		#  The string should be of the form type:salt:hashed-password.
+		#  Default: ''
 		```
-	- __Windows__: 
+		- Add following lines underneath it
 		```
-		set KERAS_BACKEND=tensorflow
-		python -c "from tensorflow.keras import backend"
+		from IPython.lib import passwd
+		password = passwd("put-your-password-here")
+		c.ServerApp.password = password
 		```
-
-10. (Optional) **If you are running the project on your local machine (and not using AWS)**, create an [IPython kernel](http://ipython.readthedocs.io/en/stable/install/kernel_install.html) for the `dog-breeds-classification` environment. 
-```
-python -m ipykernel install --user --name dog-breeds-classification --display-name "dog-breeds-classification"
-```
-
-11. Open the notebook.
-```
-jupyter notebook dog_app.ipynb
-```
-
-12. (Optional) **If you are running the project on your local machine (and not using AWS)**, before running code, change the kernel to match the dog-breeds-classification environment by using the drop-down menu (**Kernel > Change kernel > dog-breeds-classification**). Then, follow the instructions in the notebook.
-
-__NOTE:__ While some code has already been implemented to get you started, you will need to implement additional functionality to successfully answer all of the questions included in the notebook. __Unless requested, do not modify code that has already been included.__
-
+	- Start Jupyter Lab
+		* >> jupyter lab --config /opt/.jupyter/jupyter_lab_config.py --port=8888
+	- Browser Jupyter Lab at `http://127.0.0.1:8888`
+		* Use your password define in previous step
+		
 ## Evaluation
 
 <!-- Your project will be reviewed by a Udacity reviewer against the CNN project [rubric](https://review.udacity.com/#!/rubrics/810/view).  Review this rubric thoroughly, and self-evaluate your project before submission.  All criteria found in the rubric must meet specifications for you to pass. -->
